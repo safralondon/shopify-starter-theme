@@ -1,0 +1,26 @@
+.product__grid {
+  align-items: center;
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.product form {
+  border: 1px solid;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.social-sharing a {
+  text-decoration: none;
+}
+
+.product-images {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.product-images li {
+  list-style: none;
+}

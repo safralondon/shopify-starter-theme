@@ -1,0 +1,18 @@
+header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+header .h1,
+header h1 {
+  margin-right: auto;
+}
+
+header ul {
+  list-style: none;
+}
+
+header li {
+  display: inline-block;
+}

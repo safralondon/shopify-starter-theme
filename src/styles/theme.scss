@@ -1,0 +1,60 @@
+@charset 'UTF-8';
+
+/**
+ * [replace with theme name] | Built with Slate
+ */
+// @import "~normalize.css/normalize";
+
+// Settings
+@import "./variables";
+
+// Tools
+@import "./tools/mixins";
+@import "./tools/functions";
+
+// Core
+@import "./core/reset";
+@import "./core/forms";
+@import "./core/helpers";
+@import "./core/layout";
+@import "./core/links";
+@import "./core/media";
+@import "./core/responsive-tables";
+@import "./core/rte";
+@import "./core/typography";
+
+// Components
+@import "./components/buttons";
+@import "./components/hero-banner";
+@import "./components/icons";
+@import "./components/placeholders";
+@import "./components/responsive-images";
+@import "./components/address-forms";
+
+// Sections
+@import "./sections/blog-posts";
+@import "./sections/collection-list";
+@import "./sections/featured-collection";
+@import "./sections/footer";
+@import "./sections/header";
+@import "./sections/image-with-text";
+@import "./sections/nav";
+@import "./sections/product";
+
+// Templates
+@import "./templates/gift_card";
+@import "./templates/product";
+
+// Temp
+body {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+@media (max-width: 1240px) {
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
