@@ -38,7 +38,6 @@
       <h1>{{ product.title }}</h1>
       <p>{{ product.vendor }}</p>
 
-
       {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
         {% unless product.has_only_default_variant %}
           {% for option in product.options_with_values %}
@@ -53,23 +52,47 @@
 
               {% else %}
 
-                <label for="Option{{ option.position }}">
-                  {{ option.name }}
-                </label>
+                {% comment %}
+                  <label for="Option{{ option.position }}">
+                    {{ option.name }}
+                  </label>
 
-                <select
-                  id="Option{{ option.position }}"
-                  name="options[{{ option.name | escape }}]">
+                  <select
+                    id="Option{{ option.position }}"
+                    name="options[{{ option.name | escape }}]">
+                    {% for value in option.values %}
+                      <option
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}selected="selected"{% endif %}>
+                          {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                {% endcomment %}
+
+                <fieldset>
+                  <legend>
+                    {{ option.name }}
+                  </legend>
+
                   {% for value in option.values %}
-                    <option
-                      value="{{ value | escape }}"
-                      {% if option.selected_value == value %}selected="selected"{% endif %}>
+
+                    <div>
+                      <label>
+                        <input
+                          name="options[{{ option.name | escape }}]"
+                          type="radio"
+                          value="{{ value | escape }}"
+                          {% if option.selected_value == value %}checked="checked"{% endif %}>
                         {{ value }}
-                    </option>
+                      </label>
+                    </div>
+
                   {% endfor %}
-                </select>
+                </fieldset>
 
               {% endif %}
+
             </div>
           {% endfor %}
         {% endunless %}
@@ -87,8 +110,7 @@
           </select>
         </noscript>
 
-        <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-        <input type="number" id="Quantity" name="quantity" value="1" min="1">
+        <input type="hidden" name="quantity" value="1">
 
         <div data-price-wrapper>
           <span data-product-price>
