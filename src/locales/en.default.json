@@ -278,10 +278,10 @@
       "on_sale_from_html": "On Sale from {{ price }}",
       "from_text_html": "From {{ price }}",
       "quantity": "Quantity",
-      "add_to_cart": "Add to Cart",
-      "recommended": {
-        "title": "You may also want to try"
-      }
+      "add_to_cart": "Add to Cart"
+    },
+    "recommended": {
+      "title": "You may also want to try"
     }
   },
   "gift_cards": {
