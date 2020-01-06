@@ -1,6 +1,6 @@
 {
   "name": "shopify-starter-theme",
-  "version": "1.0",
+  "version": "1.0-beta",
   "private": true,
   "author": "Safra London / Shopify Inc.",
   "description": "Fork of Shopify's Starter Theme. An opinionated, Slate compatible, starting point for developing Shopify themes.",
@@ -16,7 +16,8 @@
     "url": "https://github.com/safralondon/shopify-starter-theme.git"
   },
   "devDependencies": {
-    "@shopify/slate-tools": "1.0.0-beta.15",
+    "@shopify/slate-tools": "1.0.0-beta.19",
+    "@shopify/theme-predictive-search": "^3.0.3",
     "babel-preset-shopify": "^16.2.0",
     "eslint-plugin-shopify": "^19.0.0",
     "stylelint-config-prettier": "^3.0.4",
