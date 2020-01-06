@@ -5,25 +5,25 @@
   {{ form.errors | default_errors }}
 
   <p>
-    <label for="CustomerPassword" class="label-hidden">
+    <label for="CustomerPassword">
       {{ 'customer.activate_account.password' | t }}
     </label>
-    <input type="password"
-      name="customer[password]"
+    <input
       id="CustomerPassword"
-      placeholder="{{ 'customer.activate_account.password' | t }}">
+      name="customer[password]"
+      type="password">
   </p>
 
   <p>
-    <label for="CustomerPasswordConfirmation" class="label-hidden">
+    <label for="CustomerPasswordConfirmation">
       {{ 'customer.activate_account.password_confirm' | t }}
     </label>
-    <input type="password"
-      name="customer[password_confirmation]"
+    <input
       id="CustomerPasswordConfirmation"
-      placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
+      name="customer[password_confirmation]"
+      type="password">
   </p>
 
-  <input type="submit" class="button" value="{{ 'customer.activate_account.submit' | t }}">
-  <input type="submit" class="button button--secondary" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
+  <button type="submit" class="button">{{ 'customer.activate_account.submit' | t }}</button>
+  <button type="submit" class="button button--secondary" name="decline">{{ 'customer.activate_account.cancel' | t }}</button>
 {% endform %}
