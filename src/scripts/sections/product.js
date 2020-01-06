@@ -6,17 +6,17 @@
  * @namespace product
  */
 
-import {getUrlWithVariant, ProductForm} from '@shopify/theme-product-form';
-import {formatMoney} from '@shopify/theme-currency';
-import {register} from '@shopify/theme-sections';
-import {forceFocus} from '@shopify/theme-a11y';
+import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
+import { formatMoney } from '@shopify/theme-currency';
+import { register } from '@shopify/theme-sections';
+import { forceFocus } from '@shopify/theme-a11y';
 
 const classes = {
-  hide: 'hide',
+  hide: 'hide'
 };
 
 const keyboardKeys = {
-  ENTER: 13,
+  ENTER: 13
 };
 
 const selectors = {
@@ -32,18 +32,22 @@ const selectors = {
   productPrice: '[data-product-price]',
   thumbnail: '[data-product-single-thumbnail]',
   thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
-  thumbnailActive: '[data-product-single-thumbnail][aria-current]',
+  thumbnailActive: '[data-product-single-thumbnail][aria-current]'
 };
 
 register('product', {
   async onLoad() {
     const productFormElement = document.querySelector(selectors.productForm);
 
+    if (!productFormElement) {
+      return;
+    }
+
     this.product = await this.getProductJson(
-      productFormElement.dataset.productHandle,
+      productFormElement.dataset.productHandle
     );
     this.productForm = new ProductForm(productFormElement, this.product, {
-      onOptionChange: this.onFormOptionChange.bind(this),
+      onOptionChange: this.onFormOptionChange.bind(this)
     });
 
     this.onThumbnailClick = this.onThumbnailClick.bind(this);
@@ -54,7 +58,9 @@ register('product', {
   },
 
   onUnload() {
-    this.productForm.destroy();
+    if (this.productForm) {
+      this.productForm.destroy();
+    }
     this.removeEventListener('click', this.onThumbnailClick);
     this.removeEventListener('keyup', this.onThumbnailKeyup);
   },
@@ -98,7 +104,7 @@ register('product', {
     }
 
     const visibleFeaturedImageWrapper = this.container.querySelector(
-      selectors.visibleImageWrapper,
+      selectors.visibleImageWrapper
     );
 
     forceFocus(visibleFeaturedImageWrapper);
@@ -107,7 +113,7 @@ register('product', {
   renderSubmitButton(variant) {
     const submitButton = this.container.querySelector(selectors.submitButton);
     const submitButtonText = this.container.querySelector(
-      selectors.submitButtonText,
+      selectors.submitButtonText
     );
 
     if (!variant) {
@@ -134,7 +140,7 @@ register('product', {
   renderPrice(variant) {
     const priceElement = this.container.querySelector(selectors.productPrice);
     const priceWrapperElement = this.container.querySelector(
-      selectors.priceWrapper,
+      selectors.priceWrapper
     );
 
     priceWrapperElement.classList.toggle(classes.hide, !variant);
@@ -150,10 +156,10 @@ register('product', {
     }
 
     const comparePriceElement = this.container.querySelector(
-      selectors.comparePrice,
+      selectors.comparePrice
     );
     const compareTextElement = this.container.querySelector(
-      selectors.comparePriceText,
+      selectors.comparePriceText
     );
 
     if (!comparePriceElement || !compareTextElement) {
@@ -163,7 +169,7 @@ register('product', {
     if (variant.compare_at_price > variant.price) {
       comparePriceElement.innerText = formatMoney(
         variant.compare_at_price,
-        theme.moneyFormat,
+        theme.moneyFormat
       );
       compareTextElement.classList.remove(classes.hide);
       comparePriceElement.classList.remove(classes.hide);
@@ -176,10 +182,10 @@ register('product', {
 
   renderActiveThumbnail(id) {
     const activeThumbnail = this.container.querySelector(
-      selectors.thumbnailById(id),
+      selectors.thumbnailById(id)
     );
     const inactiveThumbnail = this.container.querySelector(
-      selectors.thumbnailActive,
+      selectors.thumbnailActive
     );
 
     if (activeThumbnail === inactiveThumbnail) {
@@ -192,10 +198,10 @@ register('product', {
 
   renderFeaturedImage(id) {
     const activeImage = this.container.querySelector(
-      selectors.visibleImageWrapper,
+      selectors.visibleImageWrapper
     );
     const inactiveImage = this.container.querySelector(
-      selectors.imageWrapperById(id),
+      selectors.imageWrapperById(id)
     );
 
     activeImage.classList.add(classes.hide);
@@ -211,6 +217,6 @@ register('product', {
     }
 
     const url = getUrlWithVariant(window.location.href, variant.id);
-    window.history.replaceState({path: url}, '', url);
-  },
+    window.history.replaceState({ path: url }, '', url);
+  }
 });
